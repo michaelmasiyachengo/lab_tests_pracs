@@ -1,0 +1,32 @@
+LIBRARY MANAGEMENT SYSTEM — SHORT PROJECT REPORT
+
+1. Introduction
+This Java console application manages library items, members, and active loans. It demonstrates object-oriented programming concepts including encapsulation, abstraction, inheritance, polymorphism, interfaces, and exception handling.
+
+2. Design
+LibraryItem is an abstract superclass containing an item's ID and title, plus common borrowing behaviour. Book and Dvd extend LibraryItem and override loanPeriodDays(), using 21 days for books and 7 days for DVDs. LibraryItem implements Borrowable. Member stores member details and tracks active item IDs. Loan records the item ID, member ID, loan date, and due date. Library coordinates operations and stores items, members, and active loans in maps keyed by IDs.
+
+3. Validation and Exceptions
+Constructors reject blank IDs and titles/names. Duplicate IDs are rejected. ItemNotAvailableException is used when an unavailable item is borrowed or an item that is not on loan is returned. MemberLimitExceededException prevents a member from holding more than three active loans.
+
+4. Persistence
+On startup, the application loads items.csv, members.csv, and loans.csv from the data directory. When the user selects Save and exit, records are written back to CSV. Active loans are persisted so borrowed items remain unavailable after restarting the program.
+
+5. Menu Features
+The menu supports adding a book or DVD, registering members, borrowing, returning, listing overdue loans, searching titles with Java streams, listing items, and listing members.
+
+6. Testing Suggestions
+- Add a book and a DVD, then list all items.
+- Register a member and borrow an item.
+- Attempt to borrow an already borrowed item.
+- Give one member four active loans and verify the fourth is rejected.
+- Return an item and verify that it becomes available.
+- Search using part of a title.
+- Borrow an item, exit, restart, and check that the active loan is restored.
+- Confirm that overdue loans appear after their due dates.
+
+7. Limitations
+The application is a teaching project designed for a single local instance. It stores current active loans, not a complete history of returned loans. It does not include a graphical user interface or authentication.
+
+8. Conclusion
+The project demonstrates how object-oriented design can be used to build a small maintainable system with validation, controlled borrowing, search, overdue reporting, and CSV persistence.

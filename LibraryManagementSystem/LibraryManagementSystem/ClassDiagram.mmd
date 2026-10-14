@@ -1,0 +1,62 @@
+classDiagram
+    class Borrowable {
+        <<interface>>
+        +borrow(Member)
+        +giveBack()
+    }
+    class LibraryItem {
+        <<abstract>>
+        -String id
+        -String title
+        -Member currentMember
+        -LocalDate loanDate
+        -LocalDate dueDate
+        +loanPeriodDays()* int
+        +isAvailable() boolean
+        +borrow(Member)
+        +giveBack()
+    }
+    class Book {
+        +loanPeriodDays() int
+    }
+    class Dvd {
+        +loanPeriodDays() int
+    }
+    class Member {
+        -String id
+        -String name
+        -Set~String~ activeItemIds
+        +getActiveLoanCount() int
+    }
+    class Loan {
+        -String itemId
+        -String memberId
+        -LocalDate loanDate
+        -LocalDate dueDate
+        +isOverdue() boolean
+    }
+    class Library {
+        -Map~String, LibraryItem~ items
+        -Map~String, Member~ members
+        -Map~String, Loan~ loans
+        +addItem(LibraryItem)
+        +registerMember(Member)
+        +borrowItem(String, String)
+        +returnItem(String)
+        +overdueLoans() List~Loan~
+        +searchByTitle(String) List~LibraryItem~
+        +save()
+        +load()
+    }
+    class ItemNotAvailableException
+    class MemberLimitExceededException
+
+    Borrowable <|.. LibraryItem
+    LibraryItem <|-- Book
+    LibraryItem <|-- Dvd
+    Library o-- LibraryItem : stores
+    Library o-- Member : stores
+    Library o-- Loan : tracks active loans
+    LibraryItem --> Member : borrowed by
+    LibraryItem ..> ItemNotAvailableException
+    LibraryItem ..> MemberLimitExceededException
