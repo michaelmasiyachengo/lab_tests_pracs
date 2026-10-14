@@ -1,0 +1,16 @@
+package lab4;
+
+// Lab 4 - Exercise 2: Teacher IS-A Person too
+public class Teacher extends Person {
+
+    private final String subject;
+
+    public Teacher(String name, int age, String subject) {
+        super(name, age);
+        this.subject = subject;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+}

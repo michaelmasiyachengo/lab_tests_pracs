@@ -1,0 +1,10 @@
+// This is NOT a .java file on purpose, so it does not break "javac *.java".
+// To see the error yourself: copy this code into a file named Dog.java (replace the fixed Dog.java) and compile.
+
+public class Dog extends Animal {
+
+    public Dog(String name) {
+        // No super(...) call here, so Java silently inserts "super();"
+        // But Animal has no no-argument constructor, so this fails to compile.
+    }
+}
